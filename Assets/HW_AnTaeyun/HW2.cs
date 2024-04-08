@@ -5,39 +5,33 @@ using TaeYun;
 
 namespace TaeYun
 {
-
-    class Entity {
-        private Rigidbody2D _rigid;
-        public double VelocityMS{
-            get{return Mathf.Sqrt(_rigid.velocity[0]*_rigid.velocity[0]+_rigid.velocity[1]*_rigid.velocity[1]);}
-        }
-        public double VelocityKmS{
-            get{return Mathf.Sqrt(_rigid.velocity[0]*_rigid.velocity[0]+_rigid.velocity[1]*_rigid.velocity[1])/1000f;}
-        }
-        public double VelocityKmh{
-            get{return Mathf.Sqrt(_rigid.velocity[0]*_rigid.velocity[0]+_rigid.velocity[1]*_rigid.velocity[1])*3.6f;}
-        }
-
-
-        public Entity(Rigidbody2D objectRb){
-            _rigid = objectRb;
-        }
-    }
-    public class HW2 : MonoBehaviour
+    public class Homework2 : MonoBehaviour
     {
-        private Entity _temp;
+        private Rigidbody2D rigid;
+        
+        private double VelocityMS{
+            get{return Mathf.Sqrt(rigid.velocity[0]*rigid.velocity[0]+rigid.velocity[1]*rigid.velocity[1]);}
+        }
+        private double VelocityKmS{
+            get{return Mathf.Sqrt(rigid.velocity[0]*rigid.velocity[0]+rigid.velocity[1]*rigid.velocity[1])/1000f;}
+        }
+        private double VelocityKmH{
+            get{return Mathf.Sqrt(rigid.velocity[0]*rigid.velocity[0]+rigid.velocity[1]*rigid.velocity[1])*3.6f;}
+        }
+
         // Start is called before the first frame update
         void Start()
         {
-            _temp = new Entity(GetComponent<Rigidbody2D>());
+            //this = new HW() 생략됨
+            this.rigid= GetComponent<Rigidbody2D>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            Debug.Log(_temp.VelocityMS + "m/s");
-            Debug.Log(_temp.VelocityKmS + "km/s");
-            Debug.Log(_temp.VelocityKmh + "km/h");
+            Debug.Log(this.VelocityMS + "m/s");
+            Debug.Log(this.VelocityKmS + "km/s");
+            Debug.Log(this.VelocityKmH + "km/h");
         }
     }
 }
